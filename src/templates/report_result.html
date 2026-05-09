@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Report Result</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        line-height: 1.6;
+        background: linear-gradient(180deg, #f8fafc 0%, #eef6f6 100%);
+        color: #1f2937;
+      }
+      .stack {
+        display: grid;
+        gap: 20px;
+      }
+      .card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+      }
+      h1, h2 {
+        margin-top: 0;
+      }
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 16px;
+      }
+      .metric {
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 16px;
+      }
+      .label {
+        font-size: 14px;
+        color: #475569;
+      }
+      .value {
+        margin-top: 6px;
+        font-size: 24px;
+        font-weight: 700;
+        color: #0f766e;
+      }
+      .button {
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 10px 16px;
+        background: #0f766e;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stack">
+      <div class="card">
+        <h1>Sales Report Ready</h1>
+        <p>Your CSV file was processed successfully.</p>
+        <p><strong>Total rows processed:</strong> {{ rows }}</p>
+      </div>
+
+      <div class="card">
+        <h2>Summary Metrics</h2>
+        <div class="metrics">
+          <div class="metric">
+            <div class="label">Total Revenue</div>
+            <div class="value">{{ summary.total_revenue }}</div>
+          </div>
+          <div class="metric">
+            <div class="label">Total Units Sold</div>
+            <div class="value">{{ summary.total_units_sold }}</div>
+          </div>
+          <div class="metric">
+            <div class="label">Top Product</div>
+            <div class="value">{{ summary.top_product }}</div>
+          </div>
+          <div class="metric">
+            <div class="label">Top Region</div>
+            <div class="value">{{ summary.top_region }}</div>
+          </div>
+          <div class="metric">
+            <div class="label">Average Revenue Per Row</div>
+            <div class="value">{{ summary.average_revenue_per_row }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>AI Executive Summary</h2>
+        <p>{{ ai_summary }}</p>
+      </div>
+
+      <div>
+        <a class="button" href="/">Upload Another File</a>
+      </div>
+    </div>
+  </body>
+</html>

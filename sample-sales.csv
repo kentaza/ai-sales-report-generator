@@ -1,0 +1,5 @@
+date,region,product,units_sold,unit_price
+2026-05-01,Bangkok,Product A,10,99
+2026-05-01,Chiang Mai,Product B,4,149
+2026-05-02,Bangkok,Product A,6,99
+2026-05-03,Phuket,Product C,3,199
