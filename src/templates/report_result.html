@@ -56,6 +56,40 @@
         background: #0f766e;
         color: white;
       }
+      .toggle-row {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .toggle-button {
+        border: 1px solid #cbd5e1;
+        border-radius: 999px;
+        padding: 10px 14px;
+        background: #ffffff;
+        color: #0f172a;
+        cursor: pointer;
+      }
+      .toggle-button.active {
+        background: #0f766e;
+        color: #ffffff;
+        border-color: #0f766e;
+      }
+      .panel {
+        display: none;
+      }
+      .panel.active {
+        display: block;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 16px;
+        overflow-x: auto;
+      }
     </style>
   </head>
   <body>
@@ -94,12 +128,44 @@
 
       <div class="card">
         <h2>AI Executive Summary</h2>
-        <p>{{ ai_summary }}</p>
+        <div class="toggle-row">
+          <button class="toggle-button active" type="button" data-target="summary-panel">
+            Show AI Summary
+          </button>
+          <button class="toggle-button" type="button" data-target="prompt-panel">
+            Show Model Prompt
+          </button>
+        </div>
+
+        <div id="summary-panel" class="panel active">
+          <p>{{ ai_summary }}</p>
+        </div>
+
+        <div id="prompt-panel" class="panel">
+          <pre>{{ ai_prompt }}</pre>
+        </div>
       </div>
 
       <div>
         <a class="button" href="/">Upload Another File</a>
       </div>
     </div>
+
+    <script>
+      const buttons = document.querySelectorAll(".toggle-button");
+      const panels = document.querySelectorAll(".panel");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetId = button.dataset.target;
+
+          buttons.forEach((item) => item.classList.remove("active"));
+          panels.forEach((panel) => panel.classList.remove("active"));
+
+          button.classList.add("active");
+          document.getElementById(targetId).classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>

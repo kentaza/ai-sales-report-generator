@@ -30,11 +30,12 @@ async def _build_report_response(file: UploadFile) -> dict[str, object]:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     summary = build_sales_summary(records)
-    ai_summary = AIClient(settings.openai_api_key).generate_sales_summary(summary)
+    ai_result = AIClient(settings.openai_api_key).build_sales_summary_result(summary)
 
     return {
         "summary": summary,
-        "ai_summary": ai_summary,
+        "ai_summary": ai_result["summary"],
+        "ai_prompt": ai_result["prompt"],
         "rows": len(records),
     }
 
